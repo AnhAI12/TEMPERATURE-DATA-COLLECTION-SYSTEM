@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Dashboard Template · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- thu vien giao thuc de gui php -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"> </script>
+    <style>
+      body{ font: 14px sans-serif; }
+      .wrapper{ float: left; width: 75%; padding: 5px; margin: 10px 5px;  }
+      .box{ margin: auto; width: 90%;}
+      .my_class_table{
+        border: 3px solid rgb(53, 100, 220);
+        border-radius: 5px;
+        float: right;
+        margin-top: 8px;
+        /* width: 250px; */
+        height: 500px;
+        margin-right: 40px;
+        /* margin-left: 1%; */
+        padding: 4px;
+      }
+      .my_class_controlPanel{
+        border: 3px solid rgb(53, 100, 220);
+        border-radius: 5px;
+        width: 30%;
+        height: 19%;
+        margin-top: 525px;
+        margin-left: 5px;
+        margin-bottom: 5px;
+      }
+      .my_form{
+        margin-top: 15px;
+      }
+      .my_class_sample{
+        width: 120px;
+        float: left;
+        margin-left: 10px;
+        margin-bottom: 5px;
+      }
+      .btn{
+        width: 70px;
+        height: 53px;
+      }
+    </style>
+
+    <!-- Bootstrap core CSS -->
+<link href="bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+  </head>
+  <body>
+    
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"><h3 style="color: rgb(0, 200, 255);">WATERING TREE</h3></a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href="#">Sign out</a>
+    </div>
+  </div>
+</header>
+<!--left bar-->
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" style="font-size: 15px;">
+              <span data-feather="home"></span>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="font-size: 15px;">
+              <span data-feather="users"></span>
+              Profile
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#" style="font-size: 20px;">
+              <span data-feather="bar-chart-2"></span>
+              du phong
+            </a>
+          </li> -->
+        </ul>
+
+        <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Saved reports</span>
+          <a class="link-secondary" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Current month
+            </a>
+          </li>
+        </ul> -->
+      </div>
+    </nav>
+<!--Center-->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <!-- <h4 class="">Status</h4> -->
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <!-- <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+          </button> -->
+        </div>
+      </div>
+      <p class="font-weight-normal" style="color: rgb(72, 72, 202);" id="text_pump">Pump: off</p>
+      <!-------------------------------MY CHART-------------------->
+      <!-- <canvas class="my-4 w-100" id="myChart" width="2000" height="380"></canvas> -->
+      <div class="wrapper border border-3 rounded border-primary" >
+        <h4 style="text-align:left">Temperature Chart</h4>
+        <canvas id="myChart"></canvas>
+      </div>
+      <!---------------------------- DATA MY CHART--------------->
+      <script>
+        var label = [];
+        var data1 = [];
+        var data2 = [];
+        var data3 = [];
+        
+        const chartdata = {
+        labels: label,
+            datasets: [{
+                label: 'Temperature(C)',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: data1
+            }
+            // ,{
+            //     label: 'Data2',
+            //     backgroundColor: 'rgb(99, 255, 132)',
+            //     borderColor: 'rgb(99, 255, 132)',
+            //     data: data2
+            // },
+            // {
+            //     label: 'Data3',
+            //     backgroundColor: 'rgb(132, 99, 255)',
+            //     borderColor: 'rgb(132, 99, 255)',
+            //     data: data3
+            // }
+          ]
+        };
+        //config chart
+        const config = {
+            type: 'line',
+            data: chartdata,
+            options: {
+                animation:false,        // dung de chon kieu line, scale truc tung-hoanh,color,...
+                scales:{
+                  y: {
+                    min : 25,
+                    max : 35,
+                    title: {
+                      display:true,
+                      text: 'Temperature(C)'
+                    }
+                  },
+                  x: {
+                    title: {
+                      display:true,
+                      text: 'Time'
+                    }
+                  }
+                }
+            }
+        };
+        //ve do thi
+        var myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+        // load data tu database
+        $(document).ready(function(){
+            updateChart();
+        });
+        setInterval(updateChart,1000);              //1s goi mot lan
+        function updateChart(){
+            // gui request xuong database de lay data
+            $.post('readDataC.php',function(data){
+                var label = [];
+                var data1 = [];
+                // var data2 = [];
+                // var data3 = [];
+                for(var i in data){
+                    label.push(data[i].tx_time);        //them gtri phan tu vao chuoi
+                    data1.push(data[i].temp_db);
+                    // data2.push(data[i].data2);
+                    // data3.push(data[i].data3);
+                }
+                //console.log(data1);
+                myChart.data.labels = label;
+                myChart.data.datasets[0].data = data1;
+                // myChart.data.datasets[1].data = data2;
+                // myChart.data.datasets[2].data = data3;
+                myChart.update();
+            })
+        }
+    </script> 
+    
+      <!------------------------------ TABLE ---------------------------->
+      <!--data table on the right-->
+      <div class="my_class_table" >
+        <h2 style="text-align:left ; width: 160px;">Data table</h2>
+        <table class="table table-bordered" style="width: 70%;">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Time</th>
+              <th scope="col">Temperature(C)</th>
+              <!-- <th scope="col">DateTime</th> -->
+            </tr>
+          </thead>
+          <tbody id="my_tbody">
+            <!-- <tr id="my_row">
+              <td scope="row" id="id_table">0</td>
+              <td id="humid_table">0</td>
+              <td id="temp_table">0</td>
+              <td id="date_table">0</td>
+            </tr>
+            <tr id="my_row">
+              <td scope="row" id="id_table">0</td>
+              <td id="humid_table">0</td>
+              <td id="temp_table">0</td>
+              <td id="date_table">0</td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+      <!----------------------- UPDATE DATA TABLE -------------------->
+      <script>
+        // $(document).ready(function(){
+        //     //code xu ly form
+        //     $(document).on('submit','#form',function(){
+        //         $.post("addData.php",$('#form').serialize(), function(){
+        //             alert("data sent")
+        //         });
+        //         return false;
+        //     });
+        //     // code update table
+        //     updateTable();
+        // });
+        //create 20 row
+        for(let k = 0; k < 10; k++){
+          // Creating and adding data to new row of the table
+          let row_2 = document.createElement('tr');
+          let row_2_data_1 = document.createElement('td');
+          row_2_data_1.innerHTML = "0";
+          let row_2_data_2 = document.createElement('td');
+          row_2_data_2.innerHTML = "0";
+          let row_2_data_3 = document.createElement('td');
+          row_2_data_3.innerHTML = "0";
+          // let row_2_data_4 = document.createElement('td');
+          // row_2_data_4.innerHTML = "0";
+
+          row_2.appendChild(row_2_data_1);
+          row_2.appendChild(row_2_data_2);
+          row_2.appendChild(row_2_data_3);
+          // row_2.appendChild(row_2_data_4);
+          document.getElementById("my_tbody").appendChild(row_2);
+        }
+        var h=0;
+        // setInterval(deleteTable,1000); //thanh cong
+        // function deleteTable(){
+        //   for(let k = 0; k < 3; k++){
+        //   //delete row at i index 
+        //     //document.getElementById("my_tbody").deleteRow(0);
+        //     row_2_data_1.innerHTML = "";
+        //     row_2_data_2.innerHTML = "";
+        //     row_2_data_3.innerHTML = "";
+        //     row_2_data_4.innerHTML = "";
+        //   }
+        // }
+        setInterval(updateTable,1000);
+        function updateTable(){
+            // yeu cau server goi file readData.php
+            $.post("readData.php",
+            function(data){
+              for(var i in data)
+              {
+                h++;         
+                var td1 = data[i].stt;
+                var td2 = data[i].tx_time;
+                var td3 = data[i].temp_db;
+                // Creating and adding data to new row of the table
+                let row_2 = document.createElement('tr');
+                let row_2_data_1 = document.createElement('td');
+                row_2_data_1.innerHTML = td1;
+                let row_2_data_2 = document.createElement('td');
+                row_2_data_2.innerHTML = td2;
+                let row_2_data_3 = document.createElement('td');
+                row_2_data_3.innerHTML = td3;
+                // let row_2_data_4 = document.createElement('td');
+                // row_2_data_4.innerHTML = h;
+
+                row_2.appendChild(row_2_data_1);
+                row_2.appendChild(row_2_data_2);
+                row_2.appendChild(row_2_data_3);
+                // row_2.appendChild(row_2_data_4);
+                document.getElementById("my_tbody").appendChild(row_2);
+              }
+              //delete rows
+              for(let k = 0; k < 10; k++){
+                //delete row at i index 
+                //document.getElementById("my_tbody").deleteRow(0);
+                document.getElementById("my_tbody").deleteRow(0);
+              }
+                // var td1 = data[0].stt;
+                // var td2 = data[0].humidity;
+                // var td3 = data[0].gtinh;
+                // var td4 = data[0].ccao;
+                // var td5 = data[0].cnang;
+                // var td6 = data[0].bmi;
+                // document.getElementById("id_table").innerHTML = td1;
+                // document.getElementById("humid_table").innerHTML = td2;
+                // document.getElementById("td3").innerHTML = td3;
+                // document.getElementById("td4").innerHTML = td4;
+                // document.getElementById("td5").innerHTML = td5;
+                // document.getElementById("td6").innerHTML = td6;
+            })
+        }
+
+    </script>
+
+      <!-------------------------------CONTROL PANEL-------------------->
+      <!-- Control Table on the bottom-->
+      <div class="my_class_controlPanel">
+        <h4 style="text-align:left">Control Panel</h4>
+        <form class="my_form">
+          <div class="my_class_sample">
+            <!-- <label for="exampleInputEmail1" style="margin-left: 10%;">Sample Time</label> -->
+            <input type="number" class="form-control" id="exampleInputEmail1" style="width: 110px; margin-left: 1px;font-size:x-small;" placeholder="Sample time(s)">
+            <button type="submit" class="btn btn-primary" style="height: 40px; margin-left: 10px;margin-top: 3px;">Apply</button>
+          </div>
+          <button type="submit" class="btn btn-primary" style=" float: left;margin-left: 2%;margin-top: 20px;" >Start</button>
+          <button type="submit" class="btn btn-primary" style="float: right;margin-right: 15%;margin-top: 20px;" >Pump On</button>
+        </form>
+      </div>
+      
+
+    </main>
+  </div>
+</div>
+
+
+    <script src="bootstrap.bundle.min.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+  </body>
+</html>
