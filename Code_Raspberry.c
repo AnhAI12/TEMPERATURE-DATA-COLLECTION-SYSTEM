@@ -80,7 +80,7 @@ int main(int argc, char* argv[])
     while (1)
     {
         //read temperature
-        readTemp(59);                                           // 59 la thanh ghi nhiet do
+        readTemp(65);                                           // 65 la thanh ghi nhiet do
         sleep(1);                                               //delay 1s
         //random
         nd = GetRandom(30.0,31.0);
@@ -98,7 +98,7 @@ int main(int argc, char* argv[])
         //printf ("\r %02d:%02d:%02d\n", ct->tm_hour,ct->tm_min,ct->tm_sec);
         //printf("time: %s\n",tx_time);
         readTemp(59);
-        temp=((float)temp)/340+36.54
+        temp=((float)temp)/340+36.54;
         //printf("nhiet do: %f\n",((float)temp)/340+36.54);    //tra ve nhiet do
         //printf("%f\n",nd);
 
